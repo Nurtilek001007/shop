@@ -16,7 +16,7 @@ public class ProductController {
 
     @GetMapping("/")
     public String example(Model model) {
-        model.addAttribute("myData", restController.getAllProducts());
+        model.addAttribute("productList", restController.getAllProducts());
         model.addAttribute("pageTitle", "Welcome to My Website");
         return "main";
 
