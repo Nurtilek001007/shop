@@ -3,6 +3,8 @@ package kz.shop.service;
 import kz.shop.model.Product;
 import kz.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +42,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Product> searchProductsByName(String name, Pageable pageable) {
+        return productRepository.findProductByNameContaining(name, pageable);
     }
 }
