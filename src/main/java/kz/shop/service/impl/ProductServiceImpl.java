@@ -1,7 +1,8 @@
-package kz.shop.service;
+package kz.shop.service.impl;
 
 import kz.shop.model.Product;
 import kz.shop.repository.ProductRepository;
+import kz.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Autowired

@@ -10,15 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public @Data class Product {
+@Table(name = "users")
+public @Data class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Size(min = 2, max = 50, message = "size must be between 2 and 50")
+    @Size (min = 2, max = 20, message = "size must be between 2 and 20")
     private String name;
-    @Min (value = 0, message = "minimum is 0")
-    private int quantity;
-    @Min(value = 0, message = "minimum is 0")
-    private double price;
+    @Min(0)
+    private double balance;
 }

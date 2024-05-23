@@ -2,7 +2,7 @@ package kz.shop.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +10,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public @Data class Product {
+@Table(name = "orders")
+public @Data class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Size(min = 2, max = 50, message = "size must be between 2 and 50")
-    private String name;
-    @Min (value = 0, message = "minimum is 0")
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @Min(0)
     private int quantity;
-    @Min(value = 0, message = "minimum is 0")
-    private double price;
+    @NotBlank
+    private String status;
+
 }
