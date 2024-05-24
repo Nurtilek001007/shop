@@ -4,6 +4,8 @@ import kz.shop.model.User;
 import kz.shop.repository.UserRepository;
 import kz.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<User> searchUsersByName(String name, Pageable pageable) {
+        return userRepository.findByNameContaining(name, pageable);
     }
 }

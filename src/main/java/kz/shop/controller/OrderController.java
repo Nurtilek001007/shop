@@ -19,28 +19,28 @@ public class OrderController {
     }
 
     @GetMapping("/")
-    public List<Order> getAllProducts() {
+    public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
 
     @GetMapping("/{id}")
-    public Optional<Order> getProduct(@PathVariable Long id) {
+    public Optional<Order> getOrder(@PathVariable Long id) {
         return orderService.getOrderById(id);
     }
 
     @PostMapping("/")
-    public Order createProduct(@RequestBody Order product) {
-        return orderService.createOrder(product);
+    public Order createOrder(@RequestBody Order order) {
+        return orderService.createOrder(order);
     }
 
     @PutMapping("/{id}")
-    public Order updateProduct(@PathVariable Long id, @RequestBody Order product) {
-        product.setId(id);
-        return orderService.updateOrder(product);
+    public Order updateOrder(@PathVariable Long id, @RequestBody Order order) {
+        order.setId(id);
+        return orderService.updateOrder(order);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id) {
+    public void deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
     }
 }

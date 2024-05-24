@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    Page<Product> searchProducts(
+    public Page<Product> searchProducts(
             @RequestParam String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
