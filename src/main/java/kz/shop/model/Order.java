@@ -20,4 +20,8 @@ public class Order {
     private int quantity;
     @NotBlank
     private String status;
+
+    @ManyToOne
+    private User users;
+
 }
