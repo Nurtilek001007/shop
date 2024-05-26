@@ -7,17 +7,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "products")
-public @Data class Product {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Size(min = 2, max = 50, message = "size must be between 2 and 50")
     private String name;
-    @Min (value = 0, message = "minimum is 0")
+    @Min(value = 0, message = "minimum is 0")
     private int quantity;
     @Min(value = 0, message = "minimum is 0")
     private double price;
