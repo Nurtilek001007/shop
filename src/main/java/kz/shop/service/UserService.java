@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface UserService {
     List<User> getAllUsers();
     Optional<User> getUserById(Long id);
-    User createUser(User user);
+    void createUser(User user);
     User updateUser(User user);
     void deleteUser(Long id);
     Page<User> searchUsersByName(String name, Pageable pageable);

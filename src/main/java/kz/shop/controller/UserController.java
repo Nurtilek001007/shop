@@ -2,7 +2,7 @@ package kz.shop.controller;
 
 import kz.shop.model.User;
 import kz.shop.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@AllArgsConstructor
 public class UserController {
-    private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private UserService userService;
 
     @GetMapping("/")
     public List<User> getAllUsers(){
@@ -31,9 +27,10 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/")
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+    @PostMapping("/new-user")
+    public String createUser(@RequestBody User user) {
+        userService.createUser(user);
+        return "User is saved";
     }
 
     @PutMapping("/{id}")
@@ -51,8 +48,8 @@ public class UserController {
     @GetMapping("/search")
     public Page<User> searchUsersByName(
             @RequestParam String name,
-                                        @RequestParam(defaultValue = "0") int page,
-                                        @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
         return userService.searchUsersByName(name, pageable);

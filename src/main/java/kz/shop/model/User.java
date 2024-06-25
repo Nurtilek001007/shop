@@ -20,4 +20,6 @@ public class User {
     private String name;
     @Min(0)
     private double balance;
+    private String password;
+    private String roles;
 }
